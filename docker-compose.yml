@@ -1,0 +1,150 @@
+# docker-compose.yml — Stack local de Engenharia de Dados
+# Serviços: PostgreSQL (warehouse + metadados Airflow) | MinIO (data lake S3) | Airflow (LocalExecutor) | Metabase (dashboard)
+# Suba com:  docker compose up -d
+# Interfaces:  Airflow http://localhost:8080  |  MinIO http://localhost:9001  |  Metabase http://localhost:3000
+
+# Configuração comum reaproveitada pelos serviços do Airflow (âncora YAML)
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.10.5
+  environment: &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__FERNET_KEY: ""
+    AIRFLOW__WEBSERVER__SECRET_KEY: "troque-esta-chave-secreta"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    # Instala libs extras no start do container (prático para estudo; em produção use um Dockerfile)
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-boto3 s3fs requests}
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./ingestion:/opt/airflow/ingestion
+    - ./spark:/opt/airflow/spark
+  user: "${AIRFLOW_UID:-50000}:0"
+  depends_on:
+    postgres:
+      condition: service_healthy
+    airflow-init:
+      condition: service_completed_successfully
+  networks:
+    - data-net
+
+services:
+  # ---------- Banco de dados (metadados do Airflow + warehouse + metabase) ----------
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./docker/postgres-init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    networks:
+      - data-net
+
+  # ---------- Data Lake (compatível com S3) ----------
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    ports:
+      - "9000:9000" # API S3
+      - "9001:9001" # Console web
+    volumes:
+      - minio-data:/data
+    networks:
+      - data-net
+
+  # ---------- Cria os buckets bronze/silver/gold ao iniciar (roda uma vez e encerra) ----------
+  createbuckets:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      until (mc alias set local http://minio:9000 minioadmin minioadmin123) do echo 'aguardando minio...'; sleep 2; done;
+      mc mb -p local/bronze;
+      mc mb -p local/silver;
+      mc mb -p local/gold;
+      echo 'buckets criados com sucesso';
+      exit 0;
+      "
+    networks:
+      - data-net
+
+  # ---------- Inicialização do Airflow (migra o banco e cria o usuário admin) ----------
+  airflow-init:
+    <<: *airflow-common
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db migrate
+        airflow users create \
+          --username admin --password admin \
+          --firstname Admin --lastname User \
+          --role Admin --email admin@example.com
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: on-failure
+
+  # ---------- Airflow Webserver (interface http://localhost:8080) ----------
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+    restart: always
+
+  # ---------- Airflow Scheduler (executa as DAGs) ----------
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+    restart: always
+
+  # ---------- Metabase (dashboards) ----------
+  metabase:
+    image: metabase/metabase:latest
+    ports:
+      - "3000:3000"
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: airflow
+      MB_DB_PASS: airflow
+      MB_DB_HOST: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - data-net
+
+networks:
+  data-net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  minio-data:
