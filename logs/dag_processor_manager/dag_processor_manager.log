@@ -34,3 +34,37 @@
 [2026-06-24T01:06:13.509+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
 [2026-06-24T01:11:13.974+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
 [2026-06-24T01:11:13.981+0000] {manager.py:824} INFO - There are 0 files in /opt/airflow/dags
+[2026-06-24T01:16:14.477+0000] {manager.py:821} INFO - Searching for files in /opt/airflow/dags
+[2026-06-24T01:16:14.486+0000] {manager.py:824} INFO - There are 1 files in /opt/airflow/dags
+[2026-06-24T01:16:17.575+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                             PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/pipeline_cripto.py                           1           0  0.48s           2026-06-24T01:16:14                      45
+================================================================================
+[2026-06-24T01:16:48.219+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                             PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/pipeline_cripto.py                           1           0  0.15s           2026-06-24T01:16:45                      12
+================================================================================
+[2026-06-24T01:17:18.522+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                             PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/pipeline_cripto.py                           1           0  0.16s           2026-06-24T01:17:15                      12
+================================================================================
+[2026-06-24T01:17:48.717+0000] {manager.py:997} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                             PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run               Last # of DB Queries
+------------------------------------  -----  ---------  --------  ----------  --------------  -------------------  ----------------------
+/opt/airflow/dags/pipeline_cripto.py                           1           0  0.16s           2026-06-24T01:17:45                      12
+================================================================================
