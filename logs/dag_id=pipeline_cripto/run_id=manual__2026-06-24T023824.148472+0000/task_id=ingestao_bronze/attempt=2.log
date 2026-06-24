@@ -1,0 +1,236 @@
+[2026-06-24T02:41:00.723+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-06-24T02:41:00.744+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_cripto.ingestao_bronze manual__2026-06-24T02:38:24.148472+00:00 [queued]>
+[2026-06-24T02:41:00.754+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_cripto.ingestao_bronze manual__2026-06-24T02:38:24.148472+00:00 [queued]>
+[2026-06-24T02:41:00.755+0000] {taskinstance.py:2867} INFO - Starting attempt 2 of 2
+[2026-06-24T02:41:00.769+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): ingestao_bronze> on 2026-06-24 02:38:24.148472+00:00
+[2026-06-24T02:41:00.778+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_cripto', 'ingestao_bronze', 'manual__2026-06-24T02:38:24.148472+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/pipeline_cripto.py', '--cfg-path', '/tmp/tmp3jl58keo']
+[2026-06-24T02:41:00.781+0000] {standard_task_runner.py:105} INFO - Job 16: Subtask ingestao_bronze
+[2026-06-24T02:41:00.783+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=327) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-24T02:41:00.784+0000] {standard_task_runner.py:72} INFO - Started process 328 to run task
+[2026-06-24T02:41:00.854+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_cripto.ingestao_bronze manual__2026-06-24T02:38:24.148472+00:00 [running]> on host 98598316bb81
+[2026-06-24T02:41:00.957+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-eng' AIRFLOW_CTX_DAG_ID='pipeline_cripto' AIRFLOW_CTX_TASK_ID='ingestao_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-06-24T02:38:24.148472+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-24T02:38:24.148472+00:00'
+[2026-06-24T02:41:00.958+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-06-24T02:41:00.976+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-06-24T02:41:00.978+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/ingestion/ingest_bronze.py']
+[2026-06-24T02:41:00.990+0000] {subprocess.py:99} INFO - Output:
+[2026-06-24T02:41:02.114+0000] {subprocess.py:106} INFO - /opt/***/ingestion/ingest_bronze.py:42: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[2026-06-24T02:41:02.115+0000] {subprocess.py:106} INFO -   hoje = datetime.utcnow().strftime("%Y-%m-%d")
+[2026-06-24T02:41:28.529+0000] {subprocess.py:106} INFO - Chamando a API da CoinGecko...
+[2026-06-24T02:41:28.530+0000] {subprocess.py:106} INFO -   -> 50 registros recebidos
+[2026-06-24T02:41:28.531+0000] {subprocess.py:106} INFO - Gravando na camada bronze: s3://bronze/cripto/data=2026-06-24/dados.parquet
+[2026-06-24T02:41:28.531+0000] {subprocess.py:106} INFO - Traceback (most recent call last):
+[2026-06-24T02:41:28.532+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/connector.py", line 1351, in _create_direct_connection
+[2026-06-24T02:41:28.533+0000] {subprocess.py:106} INFO -     hosts = await self._resolve_host(host, port, traces=traces)
+[2026-06-24T02:41:28.534+0000] {subprocess.py:106} INFO -             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.534+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/connector.py", line 995, in _resolve_host
+[2026-06-24T02:41:28.535+0000] {subprocess.py:106} INFO -     return await asyncio.shield(resolved_host_task)
+[2026-06-24T02:41:28.536+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.537+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/connector.py", line 1026, in _resolve_host_with_throttle
+[2026-06-24T02:41:28.537+0000] {subprocess.py:106} INFO -     addrs = await self._resolver.resolve(host, port, family=self._family)
+[2026-06-24T02:41:28.538+0000] {subprocess.py:106} INFO -             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.538+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/resolver.py", line 36, in resolve
+[2026-06-24T02:41:28.539+0000] {subprocess.py:106} INFO -     infos = await self._loop.getaddrinfo(
+[2026-06-24T02:41:28.540+0000] {subprocess.py:106} INFO -             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.540+0000] {subprocess.py:106} INFO -   File "/usr/local/lib/python3.12/asyncio/base_events.py", line 905, in getaddrinfo
+[2026-06-24T02:41:28.541+0000] {subprocess.py:106} INFO -     return await self.run_in_executor(
+[2026-06-24T02:41:28.542+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.542+0000] {subprocess.py:106} INFO -   File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+[2026-06-24T02:41:28.543+0000] {subprocess.py:106} INFO -     result = self.fn(*self.args, **self.kwargs)
+[2026-06-24T02:41:28.544+0000] {subprocess.py:106} INFO -              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.544+0000] {subprocess.py:106} INFO -   File "/usr/local/lib/python3.12/socket.py", line 978, in getaddrinfo
+[2026-06-24T02:41:28.545+0000] {subprocess.py:106} INFO -     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+[2026-06-24T02:41:28.546+0000] {subprocess.py:106} INFO -                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.546+0000] {subprocess.py:106} INFO - socket.gaierror: [Errno -2] Name or service not known
+[2026-06-24T02:41:28.547+0000] {subprocess.py:106} INFO - 
+[2026-06-24T02:41:28.548+0000] {subprocess.py:106} INFO - The above exception was the direct cause of the following exception:
+[2026-06-24T02:41:28.549+0000] {subprocess.py:106} INFO - 
+[2026-06-24T02:41:28.550+0000] {subprocess.py:106} INFO - Traceback (most recent call last):
+[2026-06-24T02:41:28.550+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/httpsession.py", line 222, in send
+[2026-06-24T02:41:28.551+0000] {subprocess.py:106} INFO -     response = await session.request(
+[2026-06-24T02:41:28.552+0000] {subprocess.py:106} INFO -                ^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.553+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/client.py", line 703, in _request
+[2026-06-24T02:41:28.553+0000] {subprocess.py:106} INFO -     conn = await self._connector.connect(
+[2026-06-24T02:41:28.554+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.555+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/connector.py", line 548, in connect
+[2026-06-24T02:41:28.556+0000] {subprocess.py:106} INFO -     proto = await self._create_connection(req, traces, timeout)
+[2026-06-24T02:41:28.557+0000] {subprocess.py:106} INFO -             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.558+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/connector.py", line 1056, in _create_connection
+[2026-06-24T02:41:28.558+0000] {subprocess.py:106} INFO -     _, proto = await self._create_direct_connection(req, traces, timeout)
+[2026-06-24T02:41:28.559+0000] {subprocess.py:106} INFO -                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.560+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiohttp/connector.py", line 1357, in _create_direct_connection
+[2026-06-24T02:41:28.560+0000] {subprocess.py:106} INFO -     raise ClientConnectorDNSError(req.connection_key, exc) from exc
+[2026-06-24T02:41:28.561+0000] {subprocess.py:106} INFO - aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host minio:9000 ssl:default [Name or service not known]
+[2026-06-24T02:41:28.562+0000] {subprocess.py:106} INFO - 
+[2026-06-24T02:41:28.563+0000] {subprocess.py:106} INFO - During handling of the above exception, another exception occurred:
+[2026-06-24T02:41:28.564+0000] {subprocess.py:106} INFO - 
+[2026-06-24T02:41:28.564+0000] {subprocess.py:106} INFO - Traceback (most recent call last):
+[2026-06-24T02:41:28.565+0000] {subprocess.py:106} INFO -   File "/opt/***/ingestion/ingest_bronze.py", line 51, in <module>
+[2026-06-24T02:41:28.566+0000] {subprocess.py:106} INFO -     main()
+[2026-06-24T02:41:28.567+0000] {subprocess.py:106} INFO -   File "/opt/***/ingestion/ingest_bronze.py", line 46, in main
+[2026-06-24T02:41:28.568+0000] {subprocess.py:106} INFO -     df.to_parquet(destino, storage_options=STORAGE_OPTIONS, index=False)
+[2026-06-24T02:41:28.569+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 2970, in to_parquet
+[2026-06-24T02:41:28.571+0000] {subprocess.py:106} INFO -     return to_parquet(
+[2026-06-24T02:41:28.572+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^
+[2026-06-24T02:41:28.573+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/pandas/io/parquet.py", line 483, in to_parquet
+[2026-06-24T02:41:28.573+0000] {subprocess.py:106} INFO -     impl.write(
+[2026-06-24T02:41:28.574+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/pandas/io/parquet.py", line 226, in write
+[2026-06-24T02:41:28.575+0000] {subprocess.py:106} INFO -     self.api.parquet.write_table(
+[2026-06-24T02:41:28.576+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/pyarrow/parquet/core.py", line 1902, in write_table
+[2026-06-24T02:41:28.577+0000] {subprocess.py:106} INFO -     with ParquetWriter(
+[2026-06-24T02:41:28.578+0000] {subprocess.py:106} INFO -          ^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.579+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/pyarrow/parquet/core.py", line 1053, in __exit__
+[2026-06-24T02:41:28.580+0000] {subprocess.py:106} INFO -     self.close()
+[2026-06-24T02:41:28.581+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/pyarrow/parquet/core.py", line 1128, in close
+[2026-06-24T02:41:28.582+0000] {subprocess.py:106} INFO -     self.file_handle.close()
+[2026-06-24T02:41:28.583+0000] {subprocess.py:106} INFO -   File "pyarrow/io.pxi", line 207, in pyarrow.lib.NativeFile.close
+[2026-06-24T02:41:28.584+0000] {subprocess.py:106} INFO -   File "pyarrow/error.pxi", line 89, in pyarrow.lib.check_status
+[2026-06-24T02:41:28.585+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/fsspec/spec.py", line 2226, in close
+[2026-06-24T02:41:28.586+0000] {subprocess.py:106} INFO -     self.flush(force=True)
+[2026-06-24T02:41:28.586+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/fsspec/spec.py", line 2089, in flush
+[2026-06-24T02:41:28.587+0000] {subprocess.py:106} INFO -     if self._upload_chunk(final=force) is not False:
+[2026-06-24T02:41:28.588+0000] {subprocess.py:106} INFO -        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.589+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/s3fs/core.py", line 2759, in _upload_chunk
+[2026-06-24T02:41:28.591+0000] {subprocess.py:106} INFO -     self.commit()
+[2026-06-24T02:41:28.592+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/s3fs/core.py", line 2785, in commit
+[2026-06-24T02:41:28.593+0000] {subprocess.py:106} INFO -     write_result = self._call_s3("put_object", **kw, **match)
+[2026-06-24T02:41:28.594+0000] {subprocess.py:106} INFO -                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.595+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/s3fs/core.py", line 2618, in _call_s3
+[2026-06-24T02:41:28.596+0000] {subprocess.py:106} INFO -     return self.fs.call_s3(method, self.s3_additional_kwargs, *kwarglist, **kwargs)
+[2026-06-24T02:41:28.598+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.599+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/fsspec/asyn.py", line 118, in wrapper
+[2026-06-24T02:41:28.600+0000] {subprocess.py:106} INFO -     return sync(self.loop, func, *args, **kwargs)
+[2026-06-24T02:41:28.601+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.602+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/fsspec/asyn.py", line 103, in sync
+[2026-06-24T02:41:28.603+0000] {subprocess.py:106} INFO -     raise return_result
+[2026-06-24T02:41:28.604+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/fsspec/asyn.py", line 56, in _runner
+[2026-06-24T02:41:28.605+0000] {subprocess.py:106} INFO -     result[0] = await coro
+[2026-06-24T02:41:28.607+0000] {subprocess.py:106} INFO -                 ^^^^^^^^^^
+[2026-06-24T02:41:28.609+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/s3fs/core.py", line 464, in _call_s3
+[2026-06-24T02:41:28.611+0000] {subprocess.py:106} INFO -     return await _error_wrapper(
+[2026-06-24T02:41:28.612+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.614+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/s3fs/core.py", line 215, in _error_wrapper
+[2026-06-24T02:41:28.615+0000] {subprocess.py:106} INFO -     raise err
+[2026-06-24T02:41:28.615+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/s3fs/core.py", line 169, in _error_wrapper
+[2026-06-24T02:41:28.616+0000] {subprocess.py:106} INFO -     return await func(*args, **kwargs)
+[2026-06-24T02:41:28.618+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.619+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/client.py", line 394, in _make_api_call
+[2026-06-24T02:41:28.620+0000] {subprocess.py:106} INFO -     http, parsed_response = await self._make_request(
+[2026-06-24T02:41:28.621+0000] {subprocess.py:106} INFO -                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.622+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/client.py", line 420, in _make_request
+[2026-06-24T02:41:28.623+0000] {subprocess.py:106} INFO -     return await self._endpoint.make_request(
+[2026-06-24T02:41:28.624+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.625+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/endpoint.py", line 100, in _send_request
+[2026-06-24T02:41:28.626+0000] {subprocess.py:106} INFO -     while await self._needs_retry(
+[2026-06-24T02:41:28.627+0000] {subprocess.py:106} INFO -           ^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.628+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/endpoint.py", line 271, in _needs_retry
+[2026-06-24T02:41:28.629+0000] {subprocess.py:106} INFO -     responses = await self._event_emitter.emit(
+[2026-06-24T02:41:28.630+0000] {subprocess.py:106} INFO -                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.632+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/hooks.py", line 68, in _emit
+[2026-06-24T02:41:28.633+0000] {subprocess.py:106} INFO -     response = await resolve_awaitable(handler(**kwargs))
+[2026-06-24T02:41:28.634+0000] {subprocess.py:106} INFO -                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.634+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/_helpers.py", line 6, in resolve_awaitable
+[2026-06-24T02:41:28.635+0000] {subprocess.py:106} INFO -     return await obj
+[2026-06-24T02:41:28.636+0000] {subprocess.py:106} INFO -            ^^^^^^^^^
+[2026-06-24T02:41:28.636+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/retryhandler.py", line 107, in _call
+[2026-06-24T02:41:28.637+0000] {subprocess.py:106} INFO -     if await resolve_awaitable(self._checker(**checker_kwargs)):
+[2026-06-24T02:41:28.639+0000] {subprocess.py:106} INFO -        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.640+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/_helpers.py", line 6, in resolve_awaitable
+[2026-06-24T02:41:28.641+0000] {subprocess.py:106} INFO -     return await obj
+[2026-06-24T02:41:28.642+0000] {subprocess.py:106} INFO -            ^^^^^^^^^
+[2026-06-24T02:41:28.643+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/retryhandler.py", line 126, in _call
+[2026-06-24T02:41:28.643+0000] {subprocess.py:106} INFO -     should_retry = await self._should_retry(
+[2026-06-24T02:41:28.644+0000] {subprocess.py:106} INFO -                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.646+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/retryhandler.py", line 165, in _should_retry
+[2026-06-24T02:41:28.647+0000] {subprocess.py:106} INFO -     return await resolve_awaitable(
+[2026-06-24T02:41:28.648+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.649+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/_helpers.py", line 6, in resolve_awaitable
+[2026-06-24T02:41:28.650+0000] {subprocess.py:106} INFO -     return await obj
+[2026-06-24T02:41:28.650+0000] {subprocess.py:106} INFO -            ^^^^^^^^^
+[2026-06-24T02:41:28.651+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/retryhandler.py", line 174, in _call
+[2026-06-24T02:41:28.654+0000] {subprocess.py:106} INFO -     checker(attempt_number, response, caught_exception)
+[2026-06-24T02:41:28.655+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/botocore/retryhandler.py", line 247, in __call__
+[2026-06-24T02:41:28.656+0000] {subprocess.py:106} INFO -     return self._check_caught_exception(
+[2026-06-24T02:41:28.657+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.658+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/botocore/retryhandler.py", line 416, in _check_caught_exception
+[2026-06-24T02:41:28.660+0000] {subprocess.py:106} INFO -     raise caught_exception
+[2026-06-24T02:41:28.661+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/endpoint.py", line 181, in _do_get_response
+[2026-06-24T02:41:28.662+0000] {subprocess.py:106} INFO -     http_response = await self._send(request)
+[2026-06-24T02:41:28.663+0000] {subprocess.py:106} INFO -                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.664+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/endpoint.py", line 294, in _send
+[2026-06-24T02:41:28.665+0000] {subprocess.py:106} INFO -     return await self.http_session.send(request)
+[2026-06-24T02:41:28.666+0000] {subprocess.py:106} INFO -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2026-06-24T02:41:28.667+0000] {subprocess.py:106} INFO -   File "/home/***/.local/lib/python3.12/site-packages/aiobotocore/httpsession.py", line 267, in send
+[2026-06-24T02:41:28.668+0000] {subprocess.py:106} INFO -     raise EndpointConnectionError(endpoint_url=request.url, error=e)
+[2026-06-24T02:41:28.669+0000] {subprocess.py:106} INFO - botocore.exceptions.EndpointConnectionError: Could not connect to the endpoint URL: "http://minio:9000/bronze/cripto/data%3D2026-06-24/dados.parquet"
+[2026-06-24T02:41:28.751+0000] {subprocess.py:110} INFO - Command exited with return code 1
+[2026-06-24T02:41:28.766+0000] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 276, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-06-24T02:41:28.772+0000] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=pipeline_cripto, task_id=ingestao_bronze, run_id=manual__2026-06-24T02:38:24.148472+00:00, execution_date=20260624T023824, start_date=20260624T024100, end_date=20260624T024128
+[2026-06-24T02:41:28.808+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-06-24T02:41:28.810+0000] {standard_task_runner.py:124} ERROR - Failed to execute job 16 for task ingestao_bronze (Bash command failed. The command returned a non-zero exit code 1.; 328)
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3006, in _run_raw_task
+    return _run_raw_task(
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 274, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3161, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 3185, in _execute_task
+    return _execute_task(self, context, task_orig)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 276, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2026-06-24T02:41:28.828+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-06-24T02:41:28.857+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-24T02:41:28.862+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

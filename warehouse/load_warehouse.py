@@ -8,7 +8,7 @@ de onde o dbt vai transformar os dados na camada gold.
 
 import os
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 
 # ---- Conexão com o MinIO (data lake) ----
 STORAGE_OPTIONS = {
@@ -39,9 +39,26 @@ def main():
     )
 
     print(f"Gravando na tabela '{TABELA_DESTINO}' do warehouse...")
-    # if_exists="replace": recria a tabela a cada execução (full refresh, simples para estudo)
-    df.to_sql(TABELA_DESTINO, engine, schema="public", if_exists="replace", index=False)
-    print(f"  -> {len(df)} linhas gravadas no PostgreSQL com sucesso")
+
+    # Estratégia de carga que NÃO dropa a tabela (preserva views dependentes, ex: stg_cripto do dbt):
+    #   - se a tabela existir: esvazia (TRUNCATE) e insere (append)
+    #   - se não existir: cria do zero
+    with engine.begin() as conn:
+        existe = conn.execute(text("""
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.tables
+                WHERE table_schema = 'public' AND table_name = :t
+            )
+        """), {"t": TABELA_DESTINO}).scalar()
+
+        if existe:
+            conn.execute(text(f"TRUNCATE TABLE public.{TABELA_DESTINO}"))
+            modo = "append"   # tabela já existe e foi esvaziada
+        else:
+            modo = "replace"  # primeira carga: cria a tabela
+
+    df.to_sql(TABELA_DESTINO, engine, schema="public", if_exists=modo, index=False)
+    print(f"  -> {len(df)} linhas gravadas no PostgreSQL com sucesso (modo: {modo})")
 
 
 if __name__ == "__main__":

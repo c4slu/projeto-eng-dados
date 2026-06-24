@@ -14,13 +14,14 @@ x-airflow-common: &airflow-common
     AIRFLOW__WEBSERVER__SECRET_KEY: "troque-esta-chave-secreta"
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
     # Instala libs extras no start do container (prático para estudo; em produção use um Dockerfile)
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-boto3 s3fs requests pandas pyarrow}
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-boto3 s3fs requests pandas pyarrow apache-airflow-providers-docker}
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./ingestion:/opt/airflow/ingestion
     - ./spark:/opt/airflow/spark
     - ./warehouse:/opt/airflow/warehouse
+    - /var/run/docker.sock:/var/run/docker.sock
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     postgres:

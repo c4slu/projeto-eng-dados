@@ -1,0 +1,38 @@
+[2026-06-24T02:51:15.997+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-06-24T02:51:16.024+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_cripto.dbt_run manual__2026-06-24T02:51:05.328859+00:00 [queued]>
+[2026-06-24T02:51:16.037+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_cripto.dbt_run manual__2026-06-24T02:51:05.328859+00:00 [queued]>
+[2026-06-24T02:51:16.038+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2026-06-24T02:51:16.052+0000] {taskinstance.py:2890} INFO - Executing <Task(DockerOperator): dbt_run> on 2026-06-24 02:51:05.328859+00:00
+[2026-06-24T02:51:16.063+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_cripto', 'dbt_run', 'manual__2026-06-24T02:51:05.328859+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/pipeline_cripto.py', '--cfg-path', '/tmp/tmpehkfil1n']
+[2026-06-24T02:51:16.066+0000] {standard_task_runner.py:105} INFO - Job 24: Subtask dbt_run
+[2026-06-24T02:51:16.066+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=692) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-24T02:51:16.067+0000] {standard_task_runner.py:72} INFO - Started process 698 to run task
+[2026-06-24T02:51:16.131+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_cripto.dbt_run manual__2026-06-24T02:51:05.328859+00:00 [running]> on host 98598316bb81
+[2026-06-24T02:51:16.225+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-eng' AIRFLOW_CTX_DAG_ID='pipeline_cripto' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2026-06-24T02:51:05.328859+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-24T02:51:05.328859+00:00'
+[2026-06-24T02:51:16.227+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-06-24T02:51:16.299+0000] {docker.py:345} INFO - Starting docker container from image projeto-data-enginner-dbt
+[2026-06-24T02:51:18.650+0000] {docker.py:69} INFO - [0m02:51:18  Running with dbt=1.12.0-b3
+[2026-06-24T02:51:18.950+0000] {docker.py:69} INFO - [0m02:51:18  Registered adapter: postgres=1.10.1
+[2026-06-24T02:51:19.577+0000] {docker.py:69} INFO - [0m02:51:19  Found 4 models, 1 source, 475 macros
+[2026-06-24T02:51:19.582+0000] {docker.py:69} INFO - [0m02:51:19
+[2026-06-24T02:51:19.584+0000] {docker.py:69} INFO - [0m02:51:19  Concurrency: 4 threads (target='dev')
+[2026-06-24T02:51:19.586+0000] {docker.py:69} INFO - [0m02:51:19
+[2026-06-24T02:51:19.778+0000] {docker.py:69} INFO - [0m02:51:19  1 of 4 START sql view model public.stg_cripto .................................. [RUN]
+[2026-06-24T02:51:19.957+0000] {docker.py:69} INFO - [0m02:51:19  1 of 4 OK created sql view model public.stg_cripto ............................. [[32mCREATE VIEW[0m in 0.17s]
+[2026-06-24T02:51:19.964+0000] {docker.py:69} INFO - [0m02:51:19  2 of 4 START sql table model public.gold_metricas_diarias ...................... [RUN]
+[2026-06-24T02:51:19.967+0000] {docker.py:69} INFO - [0m02:51:19  3 of 4 START sql table model public.gold_top_market_cap ........................ [RUN]
+[2026-06-24T02:51:19.968+0000] {docker.py:69} INFO - [0m02:51:19  4 of 4 START sql table model public.gold_variacao_preco ........................ [RUN]
+[2026-06-24T02:51:20.188+0000] {docker.py:69} INFO - [0m02:51:20  3 of 4 OK created sql table model public.gold_top_market_cap ................... [[32mSELECT 10[0m in 0.21s]
+[2026-06-24T02:51:20.198+0000] {docker.py:69} INFO - [0m02:51:20  4 of 4 OK created sql table model public.gold_variacao_preco ................... [[32mSELECT 49[0m in 0.22s]
+[2026-06-24T02:51:20.202+0000] {docker.py:69} INFO - [0m02:51:20  2 of 4 OK created sql table model public.gold_metricas_diarias ................. [[32mSELECT 1[0m in 0.23s]
+[2026-06-24T02:51:20.238+0000] {docker.py:69} INFO - [0m02:51:20
+[2026-06-24T02:51:20.240+0000] {docker.py:69} INFO - [0m02:51:20  Finished running 3 table models, 1 view model in 0 hours 0 minutes and 0.65 seconds (0.65s).
+[2026-06-24T02:51:20.334+0000] {docker.py:69} INFO - [0m02:51:20
+[2026-06-24T02:51:20.336+0000] {docker.py:69} INFO - [0m02:51:20  [32mCompleted successfully[0m
+[2026-06-24T02:51:20.338+0000] {docker.py:69} INFO - [0m02:51:20
+[2026-06-24T02:51:20.341+0000] {docker.py:69} INFO - [0m02:51:20  Done. PASS=4 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=4
+[2026-06-24T02:51:21.462+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-06-24T02:51:21.464+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=pipeline_cripto, task_id=dbt_run, run_id=manual__2026-06-24T02:51:05.328859+00:00, execution_date=20260624T025105, start_date=20260624T025116, end_date=20260624T025121
+[2026-06-24T02:51:21.583+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-06-24T02:51:21.605+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-24T02:51:21.608+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

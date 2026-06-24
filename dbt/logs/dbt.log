@@ -562,3 +562,360 @@ drop table if exists "warehouse"."public"."gold_metricas_diarias__dbt_backup" ca
 [0m02:06:04.247346 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6b94cc6910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6b953d1210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b6b94ac0950>]}
 [0m02:06:04.248747 [debug] [MainThread]: Flushing usage events
 [0m02:06:04.759920 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:51:18.642052 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a31dab210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2e9aac50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2e8bd510>]}
+
+
+============================== 02:51:18.648693 | 1efb5369-a3dc-4ff7-957a-d666c1554458 ==============================
+[0m02:51:18.648693 [info ] [MainThread]: Running with dbt=1.12.0-b3
+[0m02:51:18.650313 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'maximum_seed_size_mib': '1', 'static_parser': 'True', 'target_path': 'None', 'log_path': '/usr/app/dbt/logs', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'fail_fast': 'False', 'invocation_command': 'dbt run', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'partial_parse': 'True', 'write_json': 'True', 'version_check': 'True', 'log_format': 'default', 'log_cache_events': 'False', 'printer_width': '80', 'debug': 'False', 'introspect': 'True', 'profiles_dir': '/usr/app/dbt', 'warn_error': 'None', 'empty': 'False', 'no_print': 'None'}
+[0m02:51:18.870294 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2e862010>]}
+[0m02:51:18.945598 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a31dd8e10>]}
+[0m02:51:18.948360 [info ] [MainThread]: Registered adapter: postgres=1.10.1
+[0m02:51:19.054866 [debug] [MainThread]: checksum: 2fe46f81d50cea9d02ee2ff8d6badc0f33e8e2e948ef1bbe02bab0c8e7b3471d, vars: {}, profile: cripto, target: dev, version: 1.12.0b3
+[0m02:51:19.325860 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m02:51:19.327654 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m02:51:19.328831 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m02:51:19.363659 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2cb65890>]}
+[0m02:51:19.515947 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m02:51:19.525982 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m02:51:19.547464 [debug] [MainThread]: Wrote artifact OsiDocument to /usr/app/dbt/target/osi_document.json
+[0m02:51:19.573579 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2cf69bd0>]}
+[0m02:51:19.575064 [info ] [MainThread]: Found 4 models, 1 source, 475 macros
+[0m02:51:19.577733 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2e81a1d0>]}
+[0m02:51:19.580844 [info ] [MainThread]: 
+[0m02:51:19.582378 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m02:51:19.584481 [info ] [MainThread]: 
+[0m02:51:19.588069 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m02:51:19.594697 [debug] [ThreadPool]: Acquiring new postgres connection 'list_warehouse'
+[0m02:51:19.650829 [debug] [ThreadPool]: Using postgres connection "list_warehouse"
+[0m02:51:19.652982 [debug] [ThreadPool]: On list_warehouse: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "connection_name": "list_warehouse"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m02:51:19.655034 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m02:51:19.684148 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.029 seconds
+[0m02:51:19.687501 [debug] [ThreadPool]: On list_warehouse: Close
+[0m02:51:19.690628 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_warehouse, now list_warehouse_public)
+[0m02:51:19.697704 [debug] [ThreadPool]: Using postgres connection "list_warehouse_public"
+[0m02:51:19.699237 [debug] [ThreadPool]: On list_warehouse_public: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "connection_name": "list_warehouse_public"} */
+select
+      'warehouse' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'warehouse' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'warehouse' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m02:51:19.700388 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m02:51:19.723078 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.023 seconds
+[0m02:51:19.725829 [debug] [ThreadPool]: On list_warehouse_public: ROLLBACK
+[0m02:51:19.728635 [debug] [ThreadPool]: On list_warehouse_public: Close
+[0m02:51:19.735324 [debug] [MainThread]: Using postgres connection "master"
+[0m02:51:19.737389 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m02:51:19.738809 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m02:51:19.753994 [debug] [MainThread]: SQL status: SELECT 1 in 0.015 seconds
+[0m02:51:19.756732 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a31938d10>]}
+[0m02:51:19.758550 [debug] [MainThread]: On master: ROLLBACK
+[0m02:51:19.760050 [debug] [MainThread]: On master: COMMIT
+[0m02:51:19.761191 [debug] [MainThread]: Using postgres connection "master"
+[0m02:51:19.762197 [debug] [MainThread]: On master: COMMIT
+[0m02:51:19.763782 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m02:51:19.765407 [debug] [MainThread]: On master: Close
+[0m02:51:19.775235 [debug] [Thread-1 (]: Began running node model.cripto.stg_cripto
+[0m02:51:19.777429 [info ] [Thread-1 (]: 1 of 4 START sql view model public.stg_cripto .................................. [RUN]
+[0m02:51:19.779683 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_warehouse_public, now model.cripto.stg_cripto)
+[0m02:51:19.781012 [debug] [Thread-1 (]: Began compiling node model.cripto.stg_cripto
+[0m02:51:19.791416 [debug] [Thread-1 (]: Writing injected SQL for node "model.cripto.stg_cripto"
+[0m02:51:19.801828 [debug] [Thread-1 (]: Began executing node model.cripto.stg_cripto
+[0m02:51:19.840846 [debug] [Thread-1 (]: Writing runtime sql for node "model.cripto.stg_cripto"
+[0m02:51:19.849863 [debug] [Thread-1 (]: Using postgres connection "model.cripto.stg_cripto"
+[0m02:51:19.851165 [debug] [Thread-1 (]: On model.cripto.stg_cripto: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.stg_cripto"} */
+
+  create view "warehouse"."public"."stg_cripto__dbt_tmp"
+    
+    
+  as (
+    -- Camada STAGING: seleciona e organiza as colunas relevantes da silver.
+-- Vira uma VIEW no PostgreSQL (não duplica dados, sempre reflete a tabela base).
+
+with origem as (
+    select * from "warehouse"."public"."silver_cripto"
+)
+
+select
+    id,
+    symbol,
+    name,
+    current_price,
+    market_cap,
+    market_cap_rank,
+    total_volume,
+    price_change_percentage_24h,
+    last_updated,
+    data_processamento
+from origem
+  );
+[0m02:51:19.852298 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m02:51:19.878952 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.027 seconds
+[0m02:51:19.885999 [debug] [Thread-1 (]: Using postgres connection "model.cripto.stg_cripto"
+[0m02:51:19.887661 [debug] [Thread-1 (]: On model.cripto.stg_cripto: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.stg_cripto"} */
+alter table "warehouse"."public"."stg_cripto" rename to "stg_cripto__dbt_backup"
+[0m02:51:19.889840 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m02:51:19.893942 [debug] [Thread-1 (]: Using postgres connection "model.cripto.stg_cripto"
+[0m02:51:19.895387 [debug] [Thread-1 (]: On model.cripto.stg_cripto: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.stg_cripto"} */
+alter table "warehouse"."public"."stg_cripto__dbt_tmp" rename to "stg_cripto"
+[0m02:51:19.897748 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m02:51:19.914977 [debug] [Thread-1 (]: On model.cripto.stg_cripto: COMMIT
+[0m02:51:19.916599 [debug] [Thread-1 (]: Using postgres connection "model.cripto.stg_cripto"
+[0m02:51:19.918069 [debug] [Thread-1 (]: On model.cripto.stg_cripto: COMMIT
+[0m02:51:19.921686 [debug] [Thread-1 (]: SQL status: COMMIT in 0.002 seconds
+[0m02:51:19.930217 [debug] [Thread-1 (]: Applying DROP to: "warehouse"."public"."stg_cripto__dbt_backup"
+[0m02:51:19.938236 [debug] [Thread-1 (]: Using postgres connection "model.cripto.stg_cripto"
+[0m02:51:19.939542 [debug] [Thread-1 (]: On model.cripto.stg_cripto: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.stg_cripto"} */
+drop view if exists "warehouse"."public"."stg_cripto__dbt_backup" cascade
+[0m02:51:19.947962 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.007 seconds
+[0m02:51:19.951297 [debug] [Thread-1 (]: On model.cripto.stg_cripto: Close
+[0m02:51:19.954366 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2b204bd0>]}
+[0m02:51:19.956028 [info ] [Thread-1 (]: 1 of 4 OK created sql view model public.stg_cripto ............................. [[32mCREATE VIEW[0m in 0.17s]
+[0m02:51:19.957752 [debug] [Thread-1 (]: Finished running node model.cripto.stg_cripto
+[0m02:51:19.960939 [debug] [Thread-3 (]: Began running node model.cripto.gold_metricas_diarias
+[0m02:51:19.961445 [debug] [Thread-4 (]: Began running node model.cripto.gold_top_market_cap
+[0m02:51:19.961845 [debug] [Thread-2 (]: Began running node model.cripto.gold_variacao_preco
+[0m02:51:19.963082 [info ] [Thread-3 (]: 2 of 4 START sql table model public.gold_metricas_diarias ...................... [RUN]
+[0m02:51:19.965649 [info ] [Thread-4 (]: 3 of 4 START sql table model public.gold_top_market_cap ........................ [RUN]
+[0m02:51:19.967740 [info ] [Thread-2 (]: 4 of 4 START sql table model public.gold_variacao_preco ........................ [RUN]
+[0m02:51:19.969427 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.cripto.gold_metricas_diarias'
+[0m02:51:19.970934 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.cripto.gold_top_market_cap'
+[0m02:51:19.972581 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.cripto.gold_variacao_preco'
+[0m02:51:19.974220 [debug] [Thread-3 (]: Began compiling node model.cripto.gold_metricas_diarias
+[0m02:51:19.975552 [debug] [Thread-4 (]: Began compiling node model.cripto.gold_top_market_cap
+[0m02:51:19.976632 [debug] [Thread-2 (]: Began compiling node model.cripto.gold_variacao_preco
+[0m02:51:19.980780 [debug] [Thread-3 (]: Writing injected SQL for node "model.cripto.gold_metricas_diarias"
+[0m02:51:19.985106 [debug] [Thread-4 (]: Writing injected SQL for node "model.cripto.gold_top_market_cap"
+[0m02:51:19.989925 [debug] [Thread-2 (]: Writing injected SQL for node "model.cripto.gold_variacao_preco"
+[0m02:51:19.997937 [debug] [Thread-3 (]: Began executing node model.cripto.gold_metricas_diarias
+[0m02:51:19.998947 [debug] [Thread-4 (]: Began executing node model.cripto.gold_top_market_cap
+[0m02:51:20.005966 [debug] [Thread-2 (]: Began executing node model.cripto.gold_variacao_preco
+[0m02:51:20.026738 [debug] [Thread-3 (]: Writing runtime sql for node "model.cripto.gold_metricas_diarias"
+[0m02:51:20.032430 [debug] [Thread-4 (]: Writing runtime sql for node "model.cripto.gold_top_market_cap"
+[0m02:51:20.038968 [debug] [Thread-2 (]: Writing runtime sql for node "model.cripto.gold_variacao_preco"
+[0m02:51:20.045723 [debug] [Thread-3 (]: Using postgres connection "model.cripto.gold_metricas_diarias"
+[0m02:51:20.046626 [debug] [Thread-4 (]: Using postgres connection "model.cripto.gold_top_market_cap"
+[0m02:51:20.047284 [debug] [Thread-2 (]: Using postgres connection "model.cripto.gold_variacao_preco"
+[0m02:51:20.047848 [debug] [Thread-3 (]: On model.cripto.gold_metricas_diarias: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_metricas_diarias"} */
+
+  
+    
+
+  create  table "warehouse"."public"."gold_metricas_diarias__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- GOLD: Métricas agregadas por dia de processamento.
+
+select
+    cast(data_processamento as date) as data,
+    count(*)                         as qtd_moedas,
+    sum(market_cap)                  as market_cap_total,
+    avg(current_price)               as preco_medio,
+    avg(price_change_percentage_24h) as variacao_media_24h
+from "warehouse"."public"."stg_cripto"
+group by cast(data_processamento as date)
+order by data desc
+  );
+  
+[0m02:51:20.049686 [debug] [Thread-4 (]: On model.cripto.gold_top_market_cap: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_top_market_cap"} */
+
+  
+    
+
+  create  table "warehouse"."public"."gold_top_market_cap__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- GOLD: Top 10 moedas por valor de mercado.
+
+select
+    market_cap_rank,
+    name,
+    symbol,
+    current_price,
+    market_cap,
+    total_volume
+from "warehouse"."public"."stg_cripto"
+order by market_cap desc
+limit 10
+  );
+  
+[0m02:51:20.051162 [debug] [Thread-2 (]: On model.cripto.gold_variacao_preco: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_variacao_preco"} */
+
+  
+    
+
+  create  table "warehouse"."public"."gold_variacao_preco__dbt_tmp"
+  
+  
+    as
+  
+  (
+    -- GOLD: Variação de preço em 24h (ordenado das maiores altas às maiores baixas).
+
+select
+    name,
+    symbol,
+    current_price,
+    price_change_percentage_24h
+from "warehouse"."public"."stg_cripto"
+where price_change_percentage_24h is not null
+order by price_change_percentage_24h desc
+  );
+  
+[0m02:51:20.052456 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m02:51:20.053838 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m02:51:20.055569 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m02:51:20.076061 [debug] [Thread-4 (]: SQL status: SELECT 10 in 0.022 seconds
+[0m02:51:20.085138 [debug] [Thread-4 (]: Using postgres connection "model.cripto.gold_top_market_cap"
+[0m02:51:20.085586 [debug] [Thread-2 (]: SQL status: SELECT 49 in 0.030 seconds
+[0m02:51:20.085974 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.034 seconds
+[0m02:51:20.087200 [debug] [Thread-4 (]: On model.cripto.gold_top_market_cap: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_top_market_cap"} */
+alter table "warehouse"."public"."gold_top_market_cap" rename to "gold_top_market_cap__dbt_backup"
+[0m02:51:20.092860 [debug] [Thread-2 (]: Using postgres connection "model.cripto.gold_variacao_preco"
+[0m02:51:20.097139 [debug] [Thread-3 (]: Using postgres connection "model.cripto.gold_metricas_diarias"
+[0m02:51:20.099476 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m02:51:20.100044 [debug] [Thread-2 (]: On model.cripto.gold_variacao_preco: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_variacao_preco"} */
+alter table "warehouse"."public"."gold_variacao_preco" rename to "gold_variacao_preco__dbt_backup"
+[0m02:51:20.101334 [debug] [Thread-3 (]: On model.cripto.gold_metricas_diarias: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_metricas_diarias"} */
+alter table "warehouse"."public"."gold_metricas_diarias" rename to "gold_metricas_diarias__dbt_backup"
+[0m02:51:20.105390 [debug] [Thread-4 (]: Using postgres connection "model.cripto.gold_top_market_cap"
+[0m02:51:20.107408 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m02:51:20.108534 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m02:51:20.109440 [debug] [Thread-4 (]: On model.cripto.gold_top_market_cap: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_top_market_cap"} */
+alter table "warehouse"."public"."gold_top_market_cap__dbt_tmp" rename to "gold_top_market_cap"
+[0m02:51:20.113603 [debug] [Thread-2 (]: Using postgres connection "model.cripto.gold_variacao_preco"
+[0m02:51:20.118841 [debug] [Thread-3 (]: Using postgres connection "model.cripto.gold_metricas_diarias"
+[0m02:51:20.120800 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m02:51:20.121551 [debug] [Thread-2 (]: On model.cripto.gold_variacao_preco: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_variacao_preco"} */
+alter table "warehouse"."public"."gold_variacao_preco__dbt_tmp" rename to "gold_variacao_preco"
+[0m02:51:20.122709 [debug] [Thread-3 (]: On model.cripto.gold_metricas_diarias: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_metricas_diarias"} */
+alter table "warehouse"."public"."gold_metricas_diarias__dbt_tmp" rename to "gold_metricas_diarias"
+[0m02:51:20.124814 [debug] [Thread-4 (]: On model.cripto.gold_top_market_cap: COMMIT
+[0m02:51:20.126828 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m02:51:20.128357 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m02:51:20.129414 [debug] [Thread-4 (]: Using postgres connection "model.cripto.gold_top_market_cap"
+[0m02:51:20.131799 [debug] [Thread-2 (]: On model.cripto.gold_variacao_preco: COMMIT
+[0m02:51:20.134765 [debug] [Thread-3 (]: On model.cripto.gold_metricas_diarias: COMMIT
+[0m02:51:20.136052 [debug] [Thread-4 (]: On model.cripto.gold_top_market_cap: COMMIT
+[0m02:51:20.137164 [debug] [Thread-2 (]: Using postgres connection "model.cripto.gold_variacao_preco"
+[0m02:51:20.138566 [debug] [Thread-3 (]: Using postgres connection "model.cripto.gold_metricas_diarias"
+[0m02:51:20.141289 [debug] [Thread-2 (]: On model.cripto.gold_variacao_preco: COMMIT
+[0m02:51:20.142178 [debug] [Thread-4 (]: SQL status: COMMIT in 0.002 seconds
+[0m02:51:20.142968 [debug] [Thread-3 (]: On model.cripto.gold_metricas_diarias: COMMIT
+[0m02:51:20.148224 [debug] [Thread-4 (]: Applying DROP to: "warehouse"."public"."gold_top_market_cap__dbt_backup"
+[0m02:51:20.148640 [debug] [Thread-2 (]: SQL status: COMMIT in 0.004 seconds
+[0m02:51:20.150620 [debug] [Thread-3 (]: SQL status: COMMIT in 0.001 seconds
+[0m02:51:20.154634 [debug] [Thread-4 (]: Using postgres connection "model.cripto.gold_top_market_cap"
+[0m02:51:20.158914 [debug] [Thread-2 (]: Applying DROP to: "warehouse"."public"."gold_variacao_preco__dbt_backup"
+[0m02:51:20.165085 [debug] [Thread-3 (]: Applying DROP to: "warehouse"."public"."gold_metricas_diarias__dbt_backup"
+[0m02:51:20.166956 [debug] [Thread-4 (]: On model.cripto.gold_top_market_cap: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_top_market_cap"} */
+drop table if exists "warehouse"."public"."gold_top_market_cap__dbt_backup" cascade
+[0m02:51:20.168786 [debug] [Thread-2 (]: Using postgres connection "model.cripto.gold_variacao_preco"
+[0m02:51:20.170569 [debug] [Thread-3 (]: Using postgres connection "model.cripto.gold_metricas_diarias"
+[0m02:51:20.172883 [debug] [Thread-2 (]: On model.cripto.gold_variacao_preco: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_variacao_preco"} */
+drop table if exists "warehouse"."public"."gold_variacao_preco__dbt_backup" cascade
+[0m02:51:20.174497 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.003 seconds
+[0m02:51:20.174916 [debug] [Thread-3 (]: On model.cripto.gold_metricas_diarias: /* {"app": "dbt", "dbt_version": "1.12.0b3", "profile_name": "cripto", "target_name": "dev", "node_id": "model.cripto.gold_metricas_diarias"} */
+drop table if exists "warehouse"."public"."gold_metricas_diarias__dbt_backup" cascade
+[0m02:51:20.178103 [debug] [Thread-4 (]: On model.cripto.gold_top_market_cap: Close
+[0m02:51:20.179106 [debug] [Thread-2 (]: SQL status: DROP TABLE in 0.003 seconds
+[0m02:51:20.182929 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2fc5dfd0>]}
+[0m02:51:20.183406 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.003 seconds
+[0m02:51:20.185059 [debug] [Thread-2 (]: On model.cripto.gold_variacao_preco: Close
+[0m02:51:20.186829 [info ] [Thread-4 (]: 3 of 4 OK created sql table model public.gold_top_market_cap ................... [[32mSELECT 10[0m in 0.21s]
+[0m02:51:20.190200 [debug] [Thread-3 (]: On model.cripto.gold_metricas_diarias: Close
+[0m02:51:20.191837 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a281c2890>]}
+[0m02:51:20.193028 [debug] [Thread-4 (]: Finished running node model.cripto.gold_top_market_cap
+[0m02:51:20.195207 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '1efb5369-a3dc-4ff7-957a-d666c1554458', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a281c2250>]}
+[0m02:51:20.196861 [info ] [Thread-2 (]: 4 of 4 OK created sql table model public.gold_variacao_preco ................... [[32mSELECT 49[0m in 0.22s]
+[0m02:51:20.201100 [info ] [Thread-3 (]: 2 of 4 OK created sql table model public.gold_metricas_diarias ................. [[32mSELECT 1[0m in 0.23s]
+[0m02:51:20.203957 [debug] [Thread-2 (]: Finished running node model.cripto.gold_variacao_preco
+[0m02:51:20.205494 [debug] [Thread-3 (]: Finished running node model.cripto.gold_metricas_diarias
+[0m02:51:20.211509 [debug] [MainThread]: On master: COMMIT
+[0m02:51:20.212898 [debug] [MainThread]: Using postgres connection "master"
+[0m02:51:20.213963 [debug] [MainThread]: On master: COMMIT
+[0m02:51:20.215969 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m02:51:20.227166 [debug] [MainThread]: SQL status: COMMIT in 0.011 seconds
+[0m02:51:20.229027 [debug] [MainThread]: On master: Close
+[0m02:51:20.230936 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m02:51:20.232192 [debug] [MainThread]: Connection 'model.cripto.stg_cripto' was properly closed.
+[0m02:51:20.233367 [debug] [MainThread]: Connection 'model.cripto.gold_metricas_diarias' was properly closed.
+[0m02:51:20.234488 [debug] [MainThread]: Connection 'model.cripto.gold_top_market_cap' was properly closed.
+[0m02:51:20.235643 [debug] [MainThread]: Connection 'model.cripto.gold_variacao_preco' was properly closed.
+[0m02:51:20.237277 [info ] [MainThread]: 
+[0m02:51:20.239189 [info ] [MainThread]: Finished running 3 table models, 1 view model in 0 hours 0 minutes and 0.65 seconds (0.65s).
+[0m02:51:20.242271 [debug] [MainThread]: Command end result
+[0m02:51:20.303465 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m02:51:20.311904 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m02:51:20.319924 [debug] [MainThread]: Wrote artifact OsiDocument to /usr/app/dbt/target/osi_document.json
+[0m02:51:20.330803 [debug] [MainThread]: Wrote artifact RunExecutionResult to /usr/app/dbt/target/run_results.json
+[0m02:51:20.332165 [info ] [MainThread]: 
+[0m02:51:20.335198 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m02:51:20.336668 [info ] [MainThread]: 
+[0m02:51:20.339186 [info ] [MainThread]: Done. PASS=4 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=4
+[0m02:51:20.342733 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 1.7934779, "process_in_blocks": "2477", "process_kernel_time": 0.611456, "process_mem_max_rss": "141376", "process_out_blocks": "3336", "process_user_time": 2.74556}
+[0m02:51:20.344308 [debug] [MainThread]: Command `dbt run` succeeded at 02:51:20.344151 after 1.80 seconds
+[0m02:51:20.345451 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2e763e90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2e7608d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9a2e8d6690>]}
+[0m02:51:20.347102 [debug] [MainThread]: Flushing usage events
+[0m02:51:20.862825 [debug] [MainThread]: An error was encountered while trying to flush usage events
