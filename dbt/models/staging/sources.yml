@@ -1,0 +1,8 @@
+version: 2
+
+# Declara a tabela carregada pelo load_warehouse.py como "fonte" do dbt.
+sources:
+  - name: raw
+    schema: public
+    tables:
+      - name: silver_cripto

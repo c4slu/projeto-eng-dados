@@ -1,0 +1,27 @@
+[2026-06-24T01:18:27.658+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-06-24T01:18:27.680+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pipeline_cripto.ingestao_bronze manual__2026-06-24T01:18:27.117980+00:00 [queued]>
+[2026-06-24T01:18:27.690+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pipeline_cripto.ingestao_bronze manual__2026-06-24T01:18:27.117980+00:00 [queued]>
+[2026-06-24T01:18:27.691+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2026-06-24T01:18:27.707+0000] {taskinstance.py:2890} INFO - Executing <Task(BashOperator): ingestao_bronze> on 2026-06-24 01:18:27.117980+00:00
+[2026-06-24T01:18:27.718+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'pipeline_cripto', 'ingestao_bronze', 'manual__2026-06-24T01:18:27.117980+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/pipeline_cripto.py', '--cfg-path', '/tmp/tmpban9tibd']
+[2026-06-24T01:18:27.722+0000] {standard_task_runner.py:105} INFO - Job 7: Subtask ingestao_bronze
+[2026-06-24T01:18:27.727+0000] {logging_mixin.py:190} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70 DeprecationWarning: This process (pid=648) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-24T01:18:27.728+0000] {standard_task_runner.py:72} INFO - Started process 649 to run task
+[2026-06-24T01:18:27.802+0000] {task_command.py:467} INFO - Running <TaskInstance: pipeline_cripto.ingestao_bronze manual__2026-06-24T01:18:27.117980+00:00 [running]> on host c2a1af185074
+[2026-06-24T01:18:27.948+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-eng' AIRFLOW_CTX_DAG_ID='pipeline_cripto' AIRFLOW_CTX_TASK_ID='ingestao_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-06-24T01:18:27.117980+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-24T01:18:27.117980+00:00'
+[2026-06-24T01:18:27.951+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2026-06-24T01:18:27.970+0000] {subprocess.py:78} INFO - Tmp dir root location: /tmp
+[2026-06-24T01:18:27.972+0000] {subprocess.py:88} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/ingestion/ingest_bronze.py']
+[2026-06-24T01:18:27.985+0000] {subprocess.py:99} INFO - Output:
+[2026-06-24T01:18:29.404+0000] {subprocess.py:106} INFO - /opt/***/ingestion/ingest_bronze.py:51: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+[2026-06-24T01:18:29.405+0000] {subprocess.py:106} INFO -   hoje = datetime.utcnow().strftime("%Y-%m-%d")
+[2026-06-24T01:18:30.127+0000] {subprocess.py:106} INFO - Chamando a API da CoinGecko...
+[2026-06-24T01:18:30.129+0000] {subprocess.py:106} INFO -   -> 50 registros recebidos
+[2026-06-24T01:18:30.131+0000] {subprocess.py:106} INFO - Gravando na camada bronze: s3://bronze/cripto/data=2026-06-24/dados.parquet
+[2026-06-24T01:18:30.133+0000] {subprocess.py:106} INFO -   -> 50 linhas gravadas com sucesso
+[2026-06-24T01:18:30.316+0000] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-06-24T01:18:30.354+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2026-06-24T01:18:30.356+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=pipeline_cripto, task_id=ingestao_bronze, run_id=manual__2026-06-24T01:18:27.117980+00:00, execution_date=20260624T011827, start_date=20260624T011827, end_date=20260624T011830
+[2026-06-24T01:18:30.434+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-06-24T01:18:30.469+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-24T01:18:30.472+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

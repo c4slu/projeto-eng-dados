@@ -20,6 +20,7 @@ x-airflow-common: &airflow-common
     - ./logs:/opt/airflow/logs
     - ./ingestion:/opt/airflow/ingestion
     - ./spark:/opt/airflow/spark
+    - ./warehouse:/opt/airflow/warehouse
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     postgres:
@@ -135,6 +136,21 @@ services:
       MB_DB_USER: airflow
       MB_DB_PASS: airflow
       MB_DB_HOST: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - data-net
+
+  dbt:
+    build:
+      context: .
+      dockerfile: docker/dbt.Dockerfile
+    volumes:
+      - ./dbt:/usr/app/dbt
+    working_dir: /usr/app/dbt
+    environment:
+      DBT_PROFILES_DIR: /usr/app/dbt
     depends_on:
       postgres:
         condition: service_healthy

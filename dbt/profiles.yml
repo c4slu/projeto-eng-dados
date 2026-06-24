@@ -1,0 +1,14 @@
+# Conexão do dbt com o PostgreSQL (warehouse)
+# O host "postgres" é o nome do serviço no docker-compose.
+cripto:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres
+      port: 5432
+      user: airflow
+      password: airflow
+      dbname: warehouse
+      schema: public
+      threads: 4

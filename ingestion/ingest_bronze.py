@@ -1,12 +1,3 @@
-"""
-ingest_bronze.py
-----------------
-Extrai dados de criptomoedas da API pública da CoinGecko e grava o
-resultado CRU (sem transformação) na camada BRONZE do MinIO.
-
-API usada (gratuita, sem chave):
-https://api.coingecko.com/api/v3/coins/markets
-"""
 
 import os
 from datetime import datetime
