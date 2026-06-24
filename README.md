@@ -20,7 +20,7 @@ API CoinGecko → BRONZE → SILVER → WAREHOUSE → GOLD → Dashboard
 
 > Diagrama completo da arquitetura disponível em [`docs/arquitetura.png`](docs/arquitetura.png).
 
-![Arquitetura do pipeline](docs/arquitetura.png)
+![Arquitetura do pipeline](docs/arquiteturas.png)
 
 ---
 
